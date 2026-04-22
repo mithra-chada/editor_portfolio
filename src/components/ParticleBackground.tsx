@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
@@ -44,7 +44,7 @@ export default function ParticleBackground() {
                     },
                     particles: {
                         color: {
-                            value: ["#FF7A00", "#FF9900", "#FFB700"],
+                            value: ["#E07810", "#CC7A10", "#E8A020"],
                         },
                         move: {
                             enable: true,
