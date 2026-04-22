@@ -1,0 +1,91 @@
+﻿@import "tailwindcss";
+
+@theme {
+  /* Semantic color tokens */
+  --color-primary:        #E07810;
+  --color-primary-deep:   #CC7A10;
+  --color-primary-bright: #E8A020;
+
+  /* Legacy aliases — kept so existing component class references still resolve */
+  --color-google-blue:  #E07810;
+  --color-soft-green:   #CC7A10;
+  --color-muted-yellow: #E8A020;
+  --color-neutral-bg:   #070707;
+  --color-background:   #070707;
+  --color-foreground:   #F0EDE8;
+}
+
+@layer base {
+  :root {
+    --background: #070707;
+    --foreground: #F0EDE8;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif !important;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Film grain overlay ─────────────────────────────────────────────────────
+   SVG feTurbulence noise tiled at small scale → authentic celluloid texture.
+   pointer-events: none ensures zero interaction interference.               */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ─── Text selection ─────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(224, 120, 16, 0.18);
+  color: #E8A020;
+}
+
+/* ─── Slim amber scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #070707; }
+::-webkit-scrollbar-thumb  { background: rgba(224, 120, 16, 0.22); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(224, 120, 16, 0.48); }
+
+/* ─── Typography ─────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif !important;
+  letter-spacing: 0.02em;
+}
+
+.font-sans,
+.font-inter {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.font-serif,
+.font-heading,
+.font-playfair {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif !important;
+}
+
+/* ─── Utility: cinematic section divider ─────────────────────────────────── */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.25), transparent);
+}
